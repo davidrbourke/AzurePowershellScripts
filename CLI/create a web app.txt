@@ -1,0 +1,16 @@
+az login
+az account list --output table
+az account set --subscription "Visual Studio Professional with MSDN"
+
+az group -h
+az group create --name davidbourkerg3 --location "UK South"
+az group list -o table
+
+az appservice plan create -n davidbourkeap3 -l "UK South" -g davidbourkerg3
+az webapp create -n "davidbourkewebapp3" -g davidbourkerg3 -p davidbourkeap3
+
+
+az webapp list --query "[?state=='Running']"
+az webapp list --query "[].{hostName: defaultHostName, state: State}"
+
+az group delete --name "davidbourkerg3" --no-wait -y
